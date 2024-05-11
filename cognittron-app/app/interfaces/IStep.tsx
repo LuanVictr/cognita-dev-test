@@ -1,4 +1,5 @@
 interface IStep {
+    id: string;
     title: string;
     content: string;
   }
