@@ -1,56 +1,30 @@
-import { useState } from "react";
-import useIsMobile from "../hooks/useIsMobile";
-import { IoMdAdd } from "react-icons/io";
-import IStep from "../interfaces/IStep";
-import StepCard from "../components/StepCard";
-import Modal from "../components/CreateStepModal";
+import { Link } from "@remix-run/react";
+import { useEffect, useState } from "react";
+// eslint-disable-next-line import/no-unresolved
+import useIsMobile from "~/hooks/useIsMobile";
 
-function Home() {
+function Index() {
   const isMobile = useIsMobile();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileVersion, setIsMobileVersion] = useState(false);
 
-  const steps = [
-    { title: "Passso 1", content: "conteudo passo 1" },
-    { title: "Passo 2", content: "conteudo passo 2" },
-    {title: 'Passo 3', content: 'conteudo passo 3'},
-  ];
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
+  useEffect(() => {
+    setIsMobileVersion(isMobile);
+  }, [isMobile]);
+  
+  return(
     <div
       className={`${
-        isMobile ? "p-3" : "px-60 py-20"
-      } px- bg-primary-background h-screen w-screen flex flex-col gap-10`}
+        isMobileVersion ? "p-5 justify-center" : "px-60 py-20"
+      } bg-primary-background min-h-screen w-screen flex flex-col gap-10`}
     >
-      <Modal isModalOpen={isModalOpen} onClose={closeModal} />
       <div
-        className={`flex ${
-          isMobile ? "flex-col gap-2" : "flex-row"
-        } justify-between items-center`}
+        className={`flex flex-col min-h-screen gap-2 justify-center items-center`}
       >
-        <h1 className="text-3xl font-bold">Titulo da trilha</h1>
-        <button
-          className="text-white bg-primary-color p-3 rounded-lg flex items-center justify-center font-bold"
-          onClick={openModal}
-        >
-          <IoMdAdd className="mr-2" /> Adicionar passo
-        </button>
-      </div>
-
-      <div className="flex flex-col gap-6">
-        {steps.map((step: IStep, index: number) => (
-          <StepCard key={index} title={step.title} content={step.content} />
-        ))}
+        <h1 className="text-3xl font-bold">Oops página errada</h1>
+        <Link className="underline text-base" to={'/explore'}>Me leve para /Explore</Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Index;
