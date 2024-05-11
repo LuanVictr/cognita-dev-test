@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: neo4j_db
+    image: neo4j:4.4.3-community
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - neo4j-data:/data
+    restart: always
+    environment:
+      - NEO4J_AUTH=neo4j/R7XHz0r8WDO6EoUF1xBn
+      - NEO4J__IMPORT__SCRIPT=/docker-entrypoint-initdb.d/cypher.cypher
+  app:
+    container_name: cognittron_app
+    build: ./cognittron-app
+    restart: always
+    ports:
+      - 3000:3000
+    env_file:
+      - ./cognittron-app/.env
+    volumes:
+      - ./cognittron-app:/api
+    depends_on:
+      - db
+    links:
+      - db:neo4j
+volumes:
+  neo4j-data:
