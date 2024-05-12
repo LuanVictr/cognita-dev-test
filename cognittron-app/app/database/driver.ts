@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const URI = 'bolt://localhost:7687';
+const URI = 'bolt://neo4j:7687';
 const USER = 'neo4j';
 const PASSWORD = process.env.NEO4J_PASSWORD ?? 'R7XHz0r8WDO6EoUF1xBn';
 
