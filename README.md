@@ -17,12 +17,16 @@ docker compose up -d
 ```
 
 Esse comando irá executar o docker-compose que irá criar o app Remix e a instância neo4j.
+
 *Aguarde 10 a 15 segundos para o neo4j iniciar sua instância*
 
 Para criar as labels com seus respectivos relacionamentos execute o seguinte comando no seu editor neo4j preferido
 
-Utilize as credenciais
+Utilize as credenciais:
+
+
 Usuário: neo4j
+
 Senha: R7XHz0r8WDO6EoUF1xBn (senha exposta por motivo de ser um teste)
 
 Rode o comando:
